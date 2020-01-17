@@ -1,2 +1,2 @@
-# trainrec-Android
+# trainrec-android
 Android interface for trainrec
