@@ -5,25 +5,20 @@
     android:versionName="1.0"
     package="no.trainrec.android">
 
-    <!-- Beware that these values are overridden by the build.gradle file -->
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
 
     <application
         android:allowBackup="true"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
 
-        <!-- This name is resolved to com.example.myapp.MainActivity
-             based upon the package attribute -->
-        <activity android:name=".MainActivity">
+        <activity android:name=".App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MainActivity" />
     </application>
+
 </manifest>
 

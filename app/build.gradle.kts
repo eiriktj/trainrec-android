@@ -25,5 +25,6 @@ android {
 }
 
 dependencies {
+    implementation("androidx.appcompat:appcompat:1.1.0")
     testImplementation("junit:junit:4.12")
 }
