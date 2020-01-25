@@ -2,8 +2,11 @@ package no.trainrec.android;
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.Composable
 import androidx.ui.core.setContent
-import androidx.ui.core.Text
+import androidx.ui.core.TextField
+import androidx.ui.layout.Column
+import androidx.ui.material.Button
 import androidx.ui.material.surface.Surface
 
 class MainActivity : AppCompatActivity() {
@@ -12,9 +15,18 @@ class MainActivity : AppCompatActivity() {
         setContent {
             AppTheme {
                 Surface {
-                    Text(text = "Hello World!")
+                    App()
                 }
             }
         }
+    }
+}
+
+@Composable
+fun App() {
+    Column {
+        TextField(value = "")
+        Button(text = "")
+        Button(text = "")
     }
 }
