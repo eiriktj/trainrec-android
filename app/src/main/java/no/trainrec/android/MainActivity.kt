@@ -9,7 +9,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Text(text = "Hello World!")
+            AppTheme {
+                Text(text = "Hello World!")
+            }
         }
     }
 }
