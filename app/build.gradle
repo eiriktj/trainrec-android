@@ -34,6 +34,7 @@ dependencies {
     implementation 'androidx.ui:ui-layout:0.1.0-dev03'
     implementation 'androidx.ui:ui-material:0.1.0-dev03'
     implementation 'androidx.ui:ui-tooling:0.1.0-dev03'
+    implementation 'com.github.jakobtj:trainrec:master-SNAPSHOT'
 
     testImplementation 'junit:junit:4.12'
 }
