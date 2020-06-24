@@ -1,5 +1,9 @@
 package no.trainrec.android;
 
+import no.trainrec.core.EntryDate
+import no.trainrec.core.ExerciseEntry
+import no.trainrec.core.TrainingRecord
+
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +12,7 @@ import androidx.compose.state
 import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
+import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Text
 import androidx.ui.foundation.TextField
 import androidx.ui.foundation.TextFieldValue
@@ -44,6 +49,7 @@ fun MyApp() {
 fun MyContent() {
     val clickedState = state { 0 }
     val titles = listOf("Add", "List")
+    val record = TrainingRecord()
 
     Column {
         TabRow(
@@ -61,16 +67,15 @@ fun MyContent() {
         //text = "Text tab ${clickedState.value + 1} selected",
         //)
         when(clickedState.value) {
-            0 -> AddTab()
-            1 -> ListTab()
+            0 -> AddTab(record)
+            1 -> ListTab(record)
         }
     }
 }
 
 @Composable
-fun AddTab() {
+fun AddTab(record: TrainingRecord) {
     val textFieldState = state { TextFieldValue("") }
-    val textOutput = state { "" }
     Surface(color = Color.DarkGray, modifier = Modifier.padding(16.dp)) {
         TextField(
             value = textFieldState.value,
@@ -78,15 +83,23 @@ fun AddTab() {
             modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth(),
             onValueChange = { textFieldState.value = it },
             onImeActionPerformed = { 
-                textOutput.value = textFieldState.value.text
+                val entry = ExerciseEntry(EntryDate.today().toString(), textFieldState.value.text)
+                record.addEntry(entry)
+                textFieldState.value = TextFieldValue("")
             }
         )
     }
-    Text(textOutput.value)
 }
 
 @Composable
-fun ListTab() {
-    Text( text = "ListTab")
+fun ListTab(record: TrainingRecord) {
+    AdapterList(
+        //data = record.listEntries().toList()
+        data = record.listEntries()
+    ) {
+        val exerciseDate = it.getDate()
+        val exerciseName = it.getExercise()
+        Text("$exerciseDate: $exerciseName")
+    }
 }
 
