@@ -1,8 +1,7 @@
 package no.trainrec.android.ui;
 
-import no.trainrec.core.EntryDate
-import no.trainrec.core.ExerciseEntry
-import no.trainrec.core.TrainingRecord
+import no.trainrec.core.domain.ExerciseEntry
+import no.trainrec.core.data.TrainingRecord
 
 import android.os.Bundle
 
