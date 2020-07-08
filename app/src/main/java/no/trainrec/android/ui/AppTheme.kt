@@ -1,4 +1,4 @@
-package no.trainrec.android;
+package no.trainrec.android.ui;
 
 import androidx.compose.Composable
 import androidx.ui.material.MaterialTheme

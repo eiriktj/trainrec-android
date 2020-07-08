@@ -1,4 +1,4 @@
-package no.trainrec.android;
+package no.trainrec.android.ui;
 
 import no.trainrec.core.EntryDate
 import no.trainrec.core.ExerciseEntry
