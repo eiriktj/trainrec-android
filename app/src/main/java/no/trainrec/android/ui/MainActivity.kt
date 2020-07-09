@@ -1,5 +1,8 @@
 package no.trainrec.android.ui;
 
+import no.trainrec.android.framework.Storage
+
+import no.trainrec.core.use_case.EntryAdder
 import no.trainrec.core.domain.ExerciseEntry
 import no.trainrec.core.data.TrainingRecord
 
@@ -48,7 +51,9 @@ fun MyApp() {
 fun MyContent() {
     val clickedState = state { 0 }
     val titles = listOf("Add", "List")
-    val record = TrainingRecord()
+    val storage = Storage()
+    val record = TrainingRecord(storage)
+    val entryadder = EntryAdder(record)
 
     Column {
         TabRow(
@@ -66,14 +71,14 @@ fun MyContent() {
         //text = "Text tab ${clickedState.value + 1} selected",
         //)
         when(clickedState.value) {
-            0 -> AddTab(record)
+            0 -> AddTab(entryadder)
             1 -> ListTab(record)
         }
     }
 }
 
 @Composable
-fun AddTab(record: TrainingRecord) {
+fun AddTab(entryadder: EntryAdder) {
     val textFieldState = state { TextFieldValue("") }
     Surface(color = Color.DarkGray, modifier = Modifier.padding(16.dp)) {
         TextField(
@@ -82,8 +87,7 @@ fun AddTab(record: TrainingRecord) {
             modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth(),
             onValueChange = { textFieldState.value = it },
             onImeActionPerformed = { 
-                val entry = ExerciseEntry(EntryDate.today().toString(), textFieldState.value.text)
-                record.addEntry(entry)
+                entryadder.addEntry(textFieldState.value.text)
                 textFieldState.value = TextFieldValue("")
             }
         )
