@@ -1,11 +1,5 @@
 package no.trainrec.android.ui;
 
-import no.trainrec.android.framework.Storage
-
-import no.trainrec.core.use_case.EntryAdder
-import no.trainrec.core.domain.ExerciseEntry
-import no.trainrec.core.data.TrainingRecord
-
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
@@ -51,9 +45,7 @@ fun MyApp() {
 fun MyContent() {
     val clickedState = state { 0 }
     val titles = listOf("Add", "List")
-    val storage = Storage()
-    val record = TrainingRecord(storage)
-    val entryadder = EntryAdder(record)
+    val presenter = Presenter()
 
     Column {
         TabRow(
@@ -71,14 +63,14 @@ fun MyContent() {
         //text = "Text tab ${clickedState.value + 1} selected",
         //)
         when(clickedState.value) {
-            0 -> AddTab(entryadder)
-            1 -> ListTab(record)
+            0 -> AddTab(presenter)
+            1 -> ListTab(presenter)
         }
     }
 }
 
 @Composable
-fun AddTab(entryadder: EntryAdder) {
+fun AddTab(presenter: Presenter) {
     val textFieldState = state { TextFieldValue("") }
     Surface(color = Color.DarkGray, modifier = Modifier.padding(16.dp)) {
         TextField(
@@ -87,7 +79,7 @@ fun AddTab(entryadder: EntryAdder) {
             modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth(),
             onValueChange = { textFieldState.value = it },
             onImeActionPerformed = { 
-                entryadder.addEntry(textFieldState.value.text)
+                presenter.addEntry(textFieldState.value.text)
                 textFieldState.value = TextFieldValue("")
             }
         )
@@ -95,14 +87,11 @@ fun AddTab(entryadder: EntryAdder) {
 }
 
 @Composable
-fun ListTab(record: TrainingRecord) {
+fun ListTab(presenter: Presenter) {
     AdapterList(
-        //data = record.listEntries().toList()
-        data = record.listEntries()
+        data = presenter.listEntries()
     ) {
-        val exerciseDate = it.getDate()
-        val exerciseName = it.getExercise()
-        Text("$exerciseDate: $exerciseName")
+        Text(it)
     }
 }
 
