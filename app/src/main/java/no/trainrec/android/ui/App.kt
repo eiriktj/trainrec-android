@@ -3,12 +3,12 @@ package no.trainrec.android.ui;
 import androidx.compose.Composable
 import androidx.compose.state
 import androidx.ui.core.Modifier
-import androidx.ui.foundation.AdapterList
+import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.foundation.Text
 import androidx.ui.foundation.TextField
-import androidx.ui.foundation.TextFieldValue
 import androidx.ui.graphics.Color
 import androidx.ui.input.KeyboardType
+import androidx.ui.input.TextFieldValue
 import androidx.ui.layout.Column
 import androidx.ui.layout.fillMaxWidth
 import androidx.ui.layout.padding
@@ -68,8 +68,8 @@ fun AddTab(presenter: Presenter) {
 
 @Composable
 fun ListTab(presenter: Presenter) {
-    AdapterList(
-        data = presenter.listEntries()
+    LazyColumnItems(
+        items = presenter.listEntries()
     ) {
         Text(it)
     }
