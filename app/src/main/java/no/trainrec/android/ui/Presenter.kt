@@ -6,8 +6,8 @@ import no.trainrec.core.use_case.EntryAdder
 import no.trainrec.core.domain.ExerciseEntry
 import no.trainrec.core.data.TrainingRecord
 
-class Presenter() {
-    private val storage = Storage()
+class Presenter(appFilesDir: String) {
+    private val storage = Storage(appFilesDir)
     private val record = TrainingRecord(storage)
     private val entryAdder = EntryAdder(record)
 

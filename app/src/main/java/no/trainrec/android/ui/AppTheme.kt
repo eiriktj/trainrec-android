@@ -5,7 +5,7 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.material.darkColorPalette
 
 @Composable
-fun MyAppTheme(content: @Composable() () -> Unit) {
+fun AppTheme(content: @Composable() () -> Unit) {
     MaterialTheme(colors = darkColorPalette()) {
         content()
     }
