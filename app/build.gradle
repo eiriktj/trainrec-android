@@ -55,6 +55,4 @@ dependencies {
     implementation 'com.github.trainrec:core:master-SNAPSHOT'
 
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation("androidx.ui:ui-core:$compose_version")
-    androidTestImplementation("androidx.ui:ui-test:$compose_version")
 }
