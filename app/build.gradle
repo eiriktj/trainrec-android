@@ -46,7 +46,6 @@ dependencies {
     implementation("androidx.appcompat:appcompat:$androidx_appcompat_version")
     implementation "androidx.core:core-ktx:$androidx_core_version"
 
-
     implementation("androidx.compose:compose-runtime:$compose_version")
     implementation("androidx.ui:ui-core:$compose_version")
     implementation("androidx.ui:ui-layout:$compose_version")
@@ -55,6 +54,7 @@ dependencies {
     implementation("androidx.ui:ui-foundation:$compose_version")
     implementation("androidx.ui:ui-animation:$compose_version")
     implementation "androidx.ui:ui-tooling:$compose_version"
+
     implementation "com.github.trainrec:core:master-SNAPSHOT"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_api_version"
