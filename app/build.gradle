@@ -39,10 +39,6 @@ android {
     }
 }
 
-configurations {
-    ktlint
-}
-
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
     implementation("androidx.compose:compose-runtime:$compose_version")
@@ -61,22 +57,4 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation("androidx.ui:ui-core:$compose_version")
     androidTestImplementation("androidx.ui:ui-test:$compose_version")
-
-    ktlint "com.pinterest:ktlint:0.36.0"
-}
-
-task ktlint(type: JavaExec, group: "verification") {
-    description = "Check Kotlin code style."
-    main = "com.pinterest.ktlint.Main"
-    classpath = configurations.ktlint
-    args "src/**/*.kt"
-}
-
-check.dependsOn ktlint
-
-task ktlintFormat(type: JavaExec, group: "formatting") {
-    description = "Fix Kotlin code style deviations."
-    main = "com.pinterest.ktlint.Main"
-    classpath = configurations.ktlint
-    args "-F", "src/**/*.kt"
 }
