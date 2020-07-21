@@ -1,4 +1,4 @@
-package no.trainrec.android.ui;
+package no.trainrec.android.ui
 
 import no.trainrec.android.framework.Storage
 

@@ -1,4 +1,4 @@
-package no.trainrec.android.framework;
+package no.trainrec.android.framework
 
 import no.trainrec.core.data.StorageInterface
 import no.trainrec.core.domain.ExerciseEntry
