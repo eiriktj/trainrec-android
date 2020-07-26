@@ -61,5 +61,7 @@ dependencies {
     implementation("androidx.compose.material:material:$compose_version")
     implementation "androidx.ui:ui-tooling:$compose_version"
 
+    implementation "com.github.trainrec:android-adapter:master-SNAPSHOT"
     implementation "com.github.trainrec:core:master-SNAPSHOT"
+    implementation "com.github.trainrec:storage-csv:master-SNAPSHOT"
 }
