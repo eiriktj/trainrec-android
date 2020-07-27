@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.4-M3'
+    ext.kotlin_version = '1.4.0-rc'
     ext.gradle_plugin_version = '4.2.0-alpha04'
 
     ext.androidx_activity_version = '1.2.0-alpha06'
