@@ -47,8 +47,8 @@ class App(io: FileIO) {
                         )
                     }
                     when(clickedState.value) {
-                        0 -> AddTab(presenter)
-                        1 -> ListTab(presenter)
+                        0 -> AddEntryTab(presenter)
+                        1 -> ListEntriesTab(presenter)
                     }
                 }
             }
@@ -58,7 +58,7 @@ class App(io: FileIO) {
 
 
 @Composable
-fun AddTab(presenter: Presenter) {
+fun AddEntryTab(presenter: Presenter) {
     val textFieldState = state { TextFieldValue("") }
     Surface(color = Color.DarkGray, modifier = Modifier.padding(16.dp)) {
         TextField(
@@ -75,9 +75,12 @@ fun AddTab(presenter: Presenter) {
 }
 
 @Composable
-fun ListTab(presenter: Presenter) {
-    Button(onClick = { presenter.save() }) {
-    Text("Save entries")
+fun ListEntriesTab(presenter: Presenter) {
+    Button(
+        onClick = { presenter.save() },
+        backgroundColor = Color.DarkGray
+    ) {
+        Text("Save entries")
     }
     LazyColumnItems(
         items = presenter.listEntries()
