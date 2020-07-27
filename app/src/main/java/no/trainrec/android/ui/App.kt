@@ -12,13 +12,21 @@ import androidx.ui.input.TextFieldValue
 import androidx.ui.layout.Column
 import androidx.ui.layout.fillMaxWidth
 import androidx.ui.layout.padding
+import androidx.ui.material.Button
 import androidx.ui.material.Surface
 import androidx.ui.material.Tab
 import androidx.ui.material.TabRow
 import androidx.ui.unit.dp
 
-class App(appFilesDir: String) {
-    private val presenter = Presenter(appFilesDir)
+import no.trainrec.android.adapter.Presenter
+import no.trainrec.storage.FileIO
+
+class App(io: FileIO) {
+    private val presenter: Presenter
+
+    init {
+        presenter = Presenter(io)
+    }
 
     @Composable
     fun Content() {
@@ -68,6 +76,9 @@ fun AddTab(presenter: Presenter) {
 
 @Composable
 fun ListTab(presenter: Presenter) {
+    Button(onClick = { presenter.save() }) {
+    Text("Save entries")
+    }
     LazyColumnItems(
         items = presenter.listEntries()
     ) {
