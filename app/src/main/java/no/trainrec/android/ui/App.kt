@@ -1,5 +1,9 @@
 package no.trainrec.android.ui
 
+import java.io.File
+
+import android.content.Context
+
 import androidx.compose.Composable
 import androidx.compose.state
 import androidx.ui.core.Modifier
@@ -21,11 +25,23 @@ import androidx.ui.unit.dp
 import no.trainrec.android.adapter.Presenter
 import no.trainrec.storage.FileIO
 
-class App(io: FileIO) {
+class App(activityContext: Context) {
+    private val context: Context
     private val presenter: Presenter
 
     init {
+        context = activityContext
+
+        val io = setupFileIO()
         presenter = Presenter(io)
+    }
+
+    fun setupFileIO(): FileIO {
+        val appFilesDir = context.getFilesDir()
+        val appData = File(appFilesDir, "data.csv")
+        appData.createNewFile() // Does nothing if file already exists
+        val io = FileIO(appData)
+        return io
     }
 
     @Composable
