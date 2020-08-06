@@ -1,12 +1,12 @@
 package no.trainrec.android.ui
 
-import androidx.compose.Composable
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.darkColorPalette
+import androidx.compose.runtime.Composable
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
 
 @Composable
 fun AppTheme(content: @Composable() () -> Unit) {
-    MaterialTheme(colors = darkColorPalette()) {
+    MaterialTheme(colors = darkColors()) {
         content()
     }
 }

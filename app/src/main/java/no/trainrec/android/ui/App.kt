@@ -4,23 +4,23 @@ import java.io.File
 
 import android.content.Context
 
-import androidx.compose.Composable
-import androidx.compose.state
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.TextField
-import androidx.ui.graphics.Color
-import androidx.ui.input.KeyboardType
-import androidx.ui.input.TextFieldValue
-import androidx.ui.layout.Column
-import androidx.ui.layout.fillMaxWidth
-import androidx.ui.layout.padding
-import androidx.ui.material.Button
-import androidx.ui.material.Surface
-import androidx.ui.material.Tab
-import androidx.ui.material.TabRow
-import androidx.ui.unit.dp
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.state
+import androidx.compose.ui.Modifier
+import androidx.compose.foundation.lazy.LazyColumnItems
+import androidx.compose.foundation.Text
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.Surface
+import androidx.compose.material.Tab
+import androidx.compose.material.TabRow
+import androidx.compose.material.TextField
+import androidx.compose.ui.unit.dp
 
 import no.trainrec.android.adapter.Presenter
 import no.trainrec.storage.FileIO
@@ -63,7 +63,7 @@ class App(activityContext: Context) {
                         )
                     }
                     when(clickedState.value) {
-                        0 -> AddEntryTab(presenter)
+                        0 -> AddEntryTab(presenter, context)
                         1 -> ListEntriesTab(presenter)
                     }
                 }
@@ -74,15 +74,15 @@ class App(activityContext: Context) {
 
 
 @Composable
-fun AddEntryTab(presenter: Presenter) {
-    val textFieldState = state { TextFieldValue("") }
+fun AddEntryTab(presenter: Presenter, context: Context) {
+    val textFieldState =  state { TextFieldValue("") }
     Surface(color = Color.DarkGray, modifier = Modifier.padding(16.dp)) {
         TextField(
             value = textFieldState.value,
+            label = { Text("") },
             keyboardType = KeyboardType.Text,
-            modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth(),
             onValueChange = { textFieldState.value = it },
-            onImeActionPerformed = { 
+            onImeActionPerformed = { action, softwareController ->
                 presenter.addEntry(textFieldState.value.text)
                 textFieldState.value = TextFieldValue("")
             }
